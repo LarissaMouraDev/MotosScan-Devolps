@@ -6,6 +6,9 @@ using MotosScan.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Adicione esta linha
+builder.WebHost.UseUrls("http://localhost:5001");
+
 // Adicionar serviços ao container
 builder.Services.AddControllers();
 
@@ -70,4 +73,4 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapControllers();
 
-app.Run();
+app.Run(); 

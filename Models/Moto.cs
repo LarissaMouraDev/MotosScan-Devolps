@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MotosScan.Models
 {
@@ -8,16 +7,17 @@ namespace MotosScan.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(100)]
+        [Required(ErrorMessage = "Modelo é obrigatório")]
+        [StringLength(100, ErrorMessage = "Modelo não pode exceder 100 caracteres")]
         public string Modelo { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Placa é obrigatória")]
+        [StringLength(10, MinimumLength = 7, ErrorMessage = "Placa inválida")]
+        public string Placa { get; set; } = string.Empty;
 
         [Required]
         [StringLength(20)]
-        public string Placa { get; set; } = string.Empty;
-
-        [StringLength(50)]
-        public string Estado { get; set; } = "Bom";
+        public string Estado { get; set; } = "Bom"; // Bom, Regular, Excelente
 
         [StringLength(100)]
         public string Localizacao { get; set; } = "Pátio A";
@@ -26,7 +26,12 @@ namespace MotosScan.Models
 
         public DateTime? UltimoCheckOut { get; set; }
 
-        [StringLength(255)]
+        [StringLength(500)]
         public string? ImagemUrl { get; set; }
+
+        // Relacionamentos
+        public ICollection<Manutencao> Manutencoes { get; set; } = new List<Manutencao>();
+
+        public ICollection<Motorista> Motoristas { get; set; } = new List<Motorista>();
     }
 }

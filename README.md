@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MotosScan API - Projeto DevOps & Cloud Computing
 
 ## 📋 Descrição do Projeto
@@ -234,3 +235,233 @@ Este projeto foi desenvolvido para fins acadêmicos como parte do desafio DevOps
 ---
 
 **MotosScan API v1.0** 
+=======
+﻿# 🔧 GUIA DE INTEGRAÇÃO - Adicionando Motorista e Manutenção
+
+Este guia mostra exatamente onde adicionar cada arquivo no projeto **MotosScan-Devolps**.
+
+---
+
+## 📁 ESTRUTURA DE ARQUIVOS PARA ADICIONAR
+
+```
+MotosScan-Devolps/
+├── Controllers/
+│   ├── MotosController.cs          [JÁ EXISTE]
+│   ├── MotoristasController.cs     [ADICIONAR] 
+│   └── ManutencoesController.cs    [ADICIONAR] 
+├── Data/
+│   ├── AppDbContext.cs             [ATUALIZAR] 
+│   └── DbInitializer.cs            [ATUALIZAR] 
+├── Models/
+│   ├── Moto.cs                     [ATUALIZAR] 
+│   ├── Motorista.cs                [ADICIONAR] 
+│   └── Manutencao.cs               [ADICIONAR] 
+└── Program.cs                      [ATUALIZAR] 
+```
+
+---
+
+## 🚀 PASSO A PASSO DE INTEGRAÇÃO
+
+### **PASSO 1: Adicionar os Models**
+
+1. Navegue até a pasta `Models/`
+2. Crie o arquivo `Motorista.cs` com o conteúdo do artifact "Motorista.cs - Models"
+3. Crie o arquivo `Manutencao.cs` com o conteúdo do artifact "Manutencao.cs - Models"
+4. **SUBSTITUA** o arquivo `Moto.cs` pelo conteúdo do artifact "Moto.cs - Models (Atualizado)"
+
+---
+
+### **PASSO 2: Atualizar o AppDbContext**
+
+1. Navegue até a pasta `Data/`
+2. **SUBSTITUA** o conteúdo do arquivo `AppDbContext.cs` pelo artifact "AppDbContext.cs - Data (Atualizado)"
+
+---
+
+### **PASSO 3: Atualizar o DbInitializer**
+
+1. Ainda na pasta `Data/`
+2. **SUBSTITUA** o conteúdo do arquivo `DbInitializer.cs` pelo artifact "DbInitializer.cs - Data (Atualizado)"
+
+---
+
+### **PASSO 4: Adicionar os Controllers**
+
+1. Navegue até a pasta `Controllers/`
+2. Crie o arquivo `MotoristasController.cs` com o conteúdo do artifact "MotoristasController.cs - Controllers"
+3. Crie o arquivo `ManutencoesController.cs` com o conteúdo do artifact "ManutencoesController.cs - Controllers"
+
+---
+
+### **PASSO 5: Atualizar o Program.cs**
+
+1. Na raiz do projeto
+2. **SUBSTITUA** o conteúdo do arquivo `Program.cs` pelo artifact "Program.cs (Atualizado)"
+
+---
+
+### **PASSO 6: Criar e Aplicar Migrations**
+
+```bash
+# 1. Certifique-se de estar na pasta do projeto
+cd MotosScan-Devolps
+
+# 2. Instalar ferramenta EF (se necessário)
+dotnet tool install --global dotnet-ef
+
+# 3. Adicionar pacote de design (se necessário)
+dotnet add package Microsoft.EntityFrameworkCore.Design
+
+# 4. Criar migration
+dotnet ef migrations add AdicionarMotoristasEManutencoes
+
+# 5. Aplicar ao banco de dados
+dotnet ef database update
+```
+
+---
+
+### **PASSO 7: Executar e Testar**
+
+```bash
+# 1. Restaurar dependências
+dotnet restore
+
+# 2. Executar a aplicação
+dotnet run
+
+# 3. Acessar Swagger
+# http://localhost:5000/swagger
+
+# 4. Testar os novos endpoints:
+# - GET /api/Motoristas
+# - GET /api/Manutencoes
+# - POST /api/Motoristas
+# - POST /api/Manutencoes
+```
+
+---
+
+### **PASSO 8: Atualizar o README.md**
+
+1. Na raiz do projeto
+2. **SUBSTITUA** o conteúdo do arquivo `README.md` pelo artifact "README.md (Atualizado com 3 Entidades)"
+
+---
+
+## ✅ CHECKLIST DE VERIFICAÇÃO
+
+Após a integração, verifique se:
+
+- [ ] Os 3 Models foram criados/atualizados corretamente
+- [ ] O AppDbContext tem os 3 DbSets (Motos, Motoristas, Manutencoes)
+- [ ] Os relacionamentos estão configurados no OnModelCreating
+- [ ] O DbInitializer popula dados das 3 entidades
+- [ ] Os 3 Controllers foram criados
+- [ ] O Program.cs foi atualizado
+- [ ] As migrations foram criadas e aplicadas
+- [ ] O projeto compila sem erros (`dotnet build`)
+- [ ] A aplicação executa sem erros (`dotnet run`)
+- [ ] O Swagger mostra os novos endpoints
+- [ ] Os dados de seed aparecem ao consultar os endpoints
+
+---
+
+## 🧪 TESTES RÁPIDOS
+
+### Teste 1: Listar Motoristas
+```bash
+curl http://localhost:5000/api/Motoristas
+```
+
+### Teste 2: Listar Manutenções
+```bash
+curl http://localhost:5000/api/Manutencoes
+```
+
+### Teste 3: Criar Motorista
+```bash
+curl -X POST "http://localhost:5000/api/Motoristas" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nome": "Teste Motorista",
+    "cpf": "99988877766",
+    "cnh": "99988877765",
+    "categoriaCNH": "A",
+    "status": "Ativo"
+  }'
+```
+
+### Teste 4: Criar Manutenção
+```bash
+curl -X POST "http://localhost:5000/api/Manutencoes" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "motoId": 1,
+    "tipoManutencao": "Preventiva",
+    "descricao": "Teste de manutenção",
+    "dataManutencao": "2025-09-29T10:00:00",
+    "status": "Pendente"
+  }'
+```
+
+---
+
+## 🐛 RESOLUÇÃO DE PROBLEMAS
+
+### Erro: "DbSet not found"
+**Solução:** Verifique se o AppDbContext foi atualizado corretamente com os 3 DbSets.
+
+### Erro: "Migration failed"
+**Solução:** Delete o banco de dados e recrie:
+```bash
+dotnet ef database drop
+dotnet ef database update
+```
+
+### Erro: "Foreign key constraint failed"
+**Solução:** Certifique-se de que os IDs das entidades relacionadas existem no banco.
+
+### Erro: "Controller not found"
+**Solução:** Verifique se os Controllers foram criados na pasta correta com os nomes exatos.
+
+### Erro de compilação
+**Solução:** Execute `dotnet clean` e depois `dotnet build`
+
+---
+
+## 📊 RESULTADO FINAL
+
+Após completar todos os passos, você terá:
+
+✅ **3 Entidades Principais:**
+- Moto (8 endpoints)
+- Motorista (9 endpoints)
+- Manutenção (10 endpoints)
+
+✅ **27 Endpoints RESTful** funcionando
+
+✅ **Relacionamentos** entre entidades configurados
+
+✅ **Dados de seed** populados automaticamente
+
+✅ **Swagger** atualizado com todos os endpoints
+
+✅ **100% dos requisitos** atendidos
+
+---
+
+## 🎯 PRÓXIMOS PASSOS (OPCIONAL)
+
+1. Adicionar testes unitários
+2. Implementar autenticação JWT
+3. Adicionar cache com Redis
+4. Implementar notificações de manutenção
+5. Criar dashboard de estatísticas
+6. Adicionar relatórios em PDF
+
+---
+
+>>>>>>> f930c64 (Adiciona novos arquivos (ex: ImagemService, DbInitializer, etc.))
