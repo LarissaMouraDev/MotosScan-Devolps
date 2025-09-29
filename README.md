@@ -6,7 +6,6 @@ MotosScan é uma API RESTful para gerenciamento de uma frota de motocicletas da 
 
 ## 👥 Membros da Equipe
 - **Larissa de Freitas Moura** - RM555136
-- **João Victor Rebello** - RM555287  
 - **Guilherme Francisco Silva** - RM557648
 
 ## 🚀 Tecnologias Utilizadas
