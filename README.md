@@ -1,6 +1,8 @@
 <<<<<<< HEAD
 # MotosScan API - Projeto DevOps & Cloud Computing
 
+## Link externo : http://localhost:5000/swagger/index.html
+
 ## 📋 Descrição do Projeto
 MotosScan é uma API RESTful para gerenciamento de uma frota de motocicletas da Mottu, desenvolvida com ASP.NET Core e implantada em ambiente de nuvem Azure. A API permite o controle de entrada e saída de motos, gerenciamento de informações da frota e persistência de dados.
 
