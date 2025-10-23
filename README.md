@@ -92,6 +92,7 @@ dotnet run --project src/MotosScan.Api
 - **API:** https://localhost:5001
 - **Swagger:** https://localhost:5001/swagger
 - **Health Check:** https://localhost:5001/health
+- **Link externo do Swagger:** http://localhost:5000/swagger/index.html 
 
 ## 📡 Endpoints
 
