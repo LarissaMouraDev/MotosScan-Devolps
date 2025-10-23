@@ -213,6 +213,7 @@ curl -X POST https://localhost:5001/api/v1/motos \
 
 # 3. Listar motos
 curl https://localhost:5001/api/v1/motos
+Link externo do Swagger : http://localhost:5000/swagger/index.html 
 ```
 
 ---
